@@ -8,17 +8,17 @@ import {
 } from '../../utils';
 
 function RUNInput(props) {
-    const { value: extValue, handleChangeValue, ...DOMProps } = props;
+    const { value: externalValue, handleChangeValue, ...DOMProps } = props;
     const [ctrlDown, setCtrlDown] = useState(false);
-    const [localValue, setLocalValue] = useState('' || extValue);
+    const [localValue, setLocalValue] = useState('' || externalValue);
 
     const handleInput = (event) => {
         const run = cleanRUN(event.target.value);
 
+        setLocalValue(run);
+
         if (handleChangeValue) {
             handleChangeValue(run);
-        } else {
-            setLocalValue(run);
         }
     };
 
@@ -48,7 +48,7 @@ function RUNInput(props) {
         <input {...DOMProps}
             type="text"
             maxLength="12"
-            value={formatRUN(localValue || extValue)}
+            value={formatRUN(localValue)}
             onInput={handleInput}
             onKeyDown={handleKeyDown}
             onKeyUp={handleKeyUp}
