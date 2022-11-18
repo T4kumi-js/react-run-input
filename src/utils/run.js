@@ -2,7 +2,7 @@
  * @param {string} run
  * @returns {{dv: string, numRUN: string}}
  */
- export function cleanAndSplitRUN(run) {
+export function cleanAndSplitRUN(run) {
     let cleanRUN = run?.replace(/[\.\-]/g, ''),
         numRUN = '',
         dv = '';

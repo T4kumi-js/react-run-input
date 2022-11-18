@@ -1,2 +1,2 @@
-export * from './keyboard-event';
+export * from './keyboard-events';
 export * from './run';
