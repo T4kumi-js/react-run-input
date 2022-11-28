@@ -21,7 +21,10 @@ module.exports = {
         {
             file: packageJson.browser,
             format: 'umd',
-            name: 'RUNInput',
+            name: 'ReactRUNInput',
+            globals: {
+                react: 'React'
+            },
             sourcemap: true
         }
     ],
