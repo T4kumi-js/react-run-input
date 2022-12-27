@@ -4,13 +4,13 @@ A React RUN input component for Chilean people
 
 ## Install
 
-Install this package using: `npm install @t4kumi.js/react-run-input`
+Install this package using: `npm install @t4kumi_js/react-run-input`
 
 ## Usage
 
 ```jsx
-import { RUNInput } from '@t4kumi.js/react-run-input';
-import { checkRUN, cleanRUN, formatRUN } from '@t4kumi.js/react-run-input';
+import { RUNInput } from '@t4kumi_js/react-run-input';
+import { checkRUN, cleanRUN, formatRUN } from '@t4kumi_js/react-run-input';
 import React, { useState } from 'react';
 
 export default () => {
