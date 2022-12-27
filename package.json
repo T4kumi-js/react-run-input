@@ -1,22 +1,35 @@
 {
-  "name": "react-run-input",
-  "version": "0.0.1",
+  "name": "@t4kumi.js/react-run-input",
+  "version": "0.1.0",
   "description": "A React RUN input component for Chilean people",
   "author": "Takumi Stryder",
   "license": "ISC",
-  "keywords": [],
+  "private": false,
+  "keywords": [
+    "react",
+    "components",
+    "ui",
+    "input",
+    "form",
+    "identity",
+    "chile"
+  ],
   "main": "dist/cjs/react-run-input.js",
   "module": "dist/esm/react-run-input.js",
   "browser": "dist/umd/react-run-input.js",
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/T4kumi-js/react-run-input.git"
+  },
   "scripts": {
     "rollup": "rollup -c",
     "storybook": "start-storybook --ci -p 6006",
     "build-storybook": "build-storybook"
   },
-  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.20.2",
     "@babel/preset-react": "^7.18.6",
@@ -37,7 +50,7 @@
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "rollup": "^3.2.5",
+    "rollup": "^3.8.1",
     "rollup-plugin-peer-deps-external": "^2.2.4"
   },
   "peerDependencies": {
