@@ -1,6 +1,3 @@
-# Project-specific
-dist
-
 # NodeJS directories and files
 node_modules
 npm-debug.log*
