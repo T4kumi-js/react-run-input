@@ -4,7 +4,7 @@ A React RUN input component for Chilean people
 
 ## Install
 
-Install this package using: `npm install t4kumi.js/react-run-input`
+Install this package using: `npm install @t4kumi.js/react-run-input`
 
 ## Usage
 
