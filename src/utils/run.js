@@ -1,6 +1,9 @@
 /**
- * @param {string} run
- * @returns {{dv: string, numRUN: string}}
+ * @param {string} run The identifier
+ * @returns {{
+ *   numRUN: string,
+ *   dv: string}
+ * } Returns the identifier with the dots and hyphens removed, with the RUN number and DV separated in an object.
  */
 export function cleanAndSplitRUN(run) {
     let cleanRUN = run?.replace(/[\.\-]/g, ''),
@@ -18,8 +21,8 @@ export function cleanAndSplitRUN(run) {
 }
 
 /**
- * @param {string} run
- * @returns {string}
+ * @param {string} run The identifier
+ * @returns {string} Returns the identifier with the dots and hyphens removed.
  */
 export function cleanRUN(run) {
     const { numRUN, dv } = cleanAndSplitRUN(run);
@@ -27,8 +30,8 @@ export function cleanRUN(run) {
 }
 
 /**
- * @param {string} run
- * @returns {boolean}
+ * @param {string} run The identifier
+ * @returns {boolean} Returns if the identifier is valid by checking it's DV.
  */
 export function checkRUN(run) {
     const isNumber = /^\d+$/;
@@ -60,8 +63,8 @@ export function checkRUN(run) {
 }
 
 /**
- * @param {string} run
- * @returns {string}
+ * @param {string} run The identifier
+ * @returns {string} Returns the identifier formatted with dots and the hyphen.
  */
 export function formatRUN(run) {
     let { numRUN, dv } = cleanAndSplitRUN(run);

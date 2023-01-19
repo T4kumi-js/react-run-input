@@ -1,6 +1,6 @@
 /**
- * @param {KeyboardEvent} event
- * @returns {boolean}
+ * @param {KeyboardEvent} event The triggered keyboard event object
+ * @returns {boolean} Returns true if it's pressing a control key.
  */
 export function isControlKey(event) {
     const KEYS = [
@@ -21,8 +21,8 @@ export function isControlKey(event) {
 }
 
 /**
- * @param {KeyboardEvent} event
- * @returns {boolean}
+ * @param {KeyboardEvent} event The triggered keyboard event object
+ * @returns {boolean} Returns true if it's pressing the CTRL or COMMAND key.
  */
 export function isCtrlOrCmdKey(event) {
     const KEYS = [
@@ -34,8 +34,8 @@ export function isCtrlOrCmdKey(event) {
 }
 
 /**
- * @param {KeyboardEvent} event
- * @returns {boolean}
+ * @param {KeyboardEvent} event The triggered keyboard event object
+ * @returns {boolean} Returns true if it's pressing the C, V, or X key (for copy, paste, and cut respectively).
  */
 export function isEditKey(event) {
     const KEYS = [
