@@ -2,22 +2,22 @@ import React, { useState } from 'react';
 import { RUNInput } from '../components';
 
 export default {
-    title: 'RUN Input/Input',
-    component: RUNInput
+  title: 'RUN Input/Input',
+  component: RUNInput
 };
 
 const Template = (args) => {
-    const [value, setValue] = useState(args.value || '');
+  const [value, setValue] = useState(args.value || '');
 
-    return (
-        <RUNInput {...args}
-            value={value}
-            handleChangeValue={setValue}
-        />
-    );
+  return (
+    <RUNInput {...args}
+      value={value}
+      handleChangeValue={setValue}
+    />
+  );
 };
 
 export const Primary = Template.bind({});
 Primary.args = {
-    placeholder: 'Ingrese su RUN'
+  placeholder: 'Ingrese su RUN'
 };
