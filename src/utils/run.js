@@ -2,13 +2,13 @@
  * @param {string} run The identifier
  * @returns {{
  *   numRUN: string,
- *   dv: string}
- * } Returns the identifier with the dots and hyphens removed, with the RUN number and DV separated in an object.
+ *   dv: string
+ * }} Returns the identifier with the dots and hyphens removed, with the RUN number and DV separated in an object.
  */
 export function cleanAndSplitRUN(run) {
   let cleanRUN = run?.replace(/[\.\-]/g, ''),
-    numRUN = '',
-    dv = '';
+      numRUN = '',
+      dv = '';
 
   if (cleanRUN?.length === 1) {
     numRUN = cleanRUN;
@@ -40,8 +40,8 @@ export function checkRUN(run) {
   if (!(numRUN && dv && isNumber.test(numRUN))) return false;
 
   let calculation = 0,
-    series = 2,
-    validDV;
+      series = 2,
+      validDV = '';
 
   for (let i = numRUN.length - 1; i >= 0; i--) {
     if (series > 7) series = 2;
