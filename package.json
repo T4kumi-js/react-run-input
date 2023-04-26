@@ -1,6 +1,6 @@
 {
   "name": "@t4kumi_js/react-run-input",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A React RUN input component for Chilean people",
   "author": "Takumi Stryder",
   "license": "ISC",
@@ -30,8 +30,8 @@
     "rollup": "rollup -c",
     "build": "npm-run-all clean rollup",
     "test": "jest",
-    "storybook": "start-storybook --ci -p 6006",
-    "build-storybook": "build-storybook"
+    "storybook": "storybook dev --ci -p 6006",
+    "build-storybook": "storybook build"
   },
   "devDependencies": {
     "@babel/core": "^7.20.2",
@@ -42,14 +42,14 @@
     "@rollup/plugin-node-resolve": "^15.0.1",
     "@rollup/plugin-replace": "^5.0.1",
     "@rollup/plugin-terser": "^0.1.0",
-    "@storybook/addon-actions": "^6.5.13",
-    "@storybook/addon-essentials": "^6.5.13",
-    "@storybook/addon-interactions": "^6.5.13",
-    "@storybook/addon-links": "^6.5.13",
-    "@storybook/builder-webpack5": "^6.5.13",
-    "@storybook/manager-webpack5": "^6.5.13",
-    "@storybook/react": "^6.5.13",
-    "@storybook/testing-library": "^0.0.13",
+    "@storybook/addon-actions": "^7.0.7",
+    "@storybook/addon-essentials": "^7.0.7",
+    "@storybook/addon-interactions": "^7.0.7",
+    "@storybook/addon-links": "^7.0.7",
+    "@storybook/addon-mdx-gfm": "^7.0.7",
+    "@storybook/react": "^7.0.7",
+    "@storybook/react-webpack5": "^7.0.7",
+    "@storybook/testing-library": "^0.1.0",
     "babel-jest": "^29.3.1",
     "babel-loader": "^9.1.0",
     "jest": "^29.3.1",
@@ -60,11 +60,12 @@
     "react-test-renderer": "^18.2.0",
     "rimraf": "^3.0.2",
     "rollup": "^3.8.1",
-    "rollup-plugin-peer-deps-external": "^2.2.4"
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "storybook": "^7.0.7"
   },
   "peerDependencies": {
     "prop-types": "^15.8.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^17.0.0 || ^18.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0"
   }
 }
