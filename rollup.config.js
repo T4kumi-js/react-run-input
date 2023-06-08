@@ -38,7 +38,8 @@ module.exports = [
         format: 'umd',
         name: 'ReactRUNInput',
         globals: {
-          react: 'React'
+          'react': 'React',
+          'prop-types': 'PropTypes'
         },
         sourcemap: true
       }
@@ -68,7 +69,8 @@ module.exports = [
         format: 'umd',
         name: 'ReactRUNInput',
         globals: {
-          react: 'React'
+          'react': 'React',
+          'prop-types': 'PropTypes'
         },
         sourcemap: true
       }
