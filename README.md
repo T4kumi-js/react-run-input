@@ -9,20 +9,25 @@ Install this package using: `npm install @t4kumi_js/react-run-input`
 ## Usage
 
 ```jsx
-import { RUNInput } from '@t4kumi_js/react-run-input';
-import { checkRUN, cleanRUN, formatRUN } from '@t4kumi_js/react-run-input';
 import React, { useState } from 'react';
 
-export default () => {
-    const [value, setValue] = useState('');
+// To import the input component
+import { RUNInput } from '@t4kumi_js/react-run-input';
 
-    return (
-        <div>
-            <RUNInput {/* some DOM properties */}
-                value={value}
-                handleChangeValue={setValue}
-            />
-        </div>
-    );
+// To import a validator and data treatment functions
+import { checkRUN, cleanRUN, formatRUN } from '@t4kumi_js/react-run-input';
+
+export default () => {
+  const [value, setValue] = useState('');
+
+  return (
+    <div>
+      <RUNInput
+        value={value}
+        handleChangeValue={setValue}
+        /* some DOM properties (e.g. className, disabled, required, etc.) */
+      />
+    </div>
+  );
 };
 ```

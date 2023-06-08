@@ -1,1 +1,1 @@
-export { RUNInput } from './RUNInput';
+export { RUNInput } from './run-input';
