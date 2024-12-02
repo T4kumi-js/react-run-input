@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import {
   isControlKey,
   isCtrlOrCmdKey,
@@ -76,10 +75,5 @@ function RUNInput(props) {
     />
   );
 }
-
-RUNInput.propTypes = {
-  value: PropTypes.string,
-  onChange: PropTypes.func
-};
 
 export default RUNInput;
