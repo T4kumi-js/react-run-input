@@ -11,7 +11,7 @@ import {
  * @param {{
  *   value?: string;
  *   onChange?: (value: string) => void;
- * }} props
+ * } & HTMLInputElement} props
  * @returns {React.JSX.Element}
  */
 function RUNInput(props) {
