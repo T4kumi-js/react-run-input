@@ -1,5 +1,7 @@
+import React from 'react';
+
 /**
- * @param {KeyboardEvent} event The triggered keyboard event object
+ * @param {React.KeyboardEvent<HTMLInputElement>} event The triggered keyboard event object
  * @returns {boolean} Returns true if it's pressing a control key.
  */
 export function isControlKey(event) {
@@ -21,7 +23,7 @@ export function isControlKey(event) {
 }
 
 /**
- * @param {KeyboardEvent} event The triggered keyboard event object
+ * @param {React.KeyboardEvent<HTMLInputElement>} event The triggered keyboard event object
  * @returns {boolean} Returns true if it's pressing the CTRL or COMMAND key.
  */
 export function isCtrlOrCmdKey(event) {
@@ -34,7 +36,7 @@ export function isCtrlOrCmdKey(event) {
 }
 
 /**
- * @param {KeyboardEvent} event The triggered keyboard event object
+ * @param {React.KeyboardEvent<HTMLInputElement>} event The triggered keyboard event object
  * @returns {boolean} Returns true if it's pressing the C, V, or X key (for copy, paste, and cut respectively).
  */
 export function isEditKey(event) {

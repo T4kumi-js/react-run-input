@@ -24,7 +24,7 @@ export default () => {
     <div>
       <RUNInput
         value={value}
-        handleChangeValue={setValue}
+        onChange={setValue}
         /* some DOM properties (e.g. className, disabled, required, etc.) */
       />
     </div>

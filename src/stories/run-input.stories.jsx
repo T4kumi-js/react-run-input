@@ -10,9 +10,10 @@ const Template = (args) => {
   const [value, setValue] = useState(args.value || '');
 
   return (
-    <RUNInput {...args}
+    <RUNInput
+      {...args}
       value={value}
-      handleChangeValue={setValue}
+      onChange={setValue}
     />
   );
 };
