@@ -1,1 +1,1 @@
-export { default as RUNInput } from './run-input.component';
+export { RUNInput } from './run-input.component';

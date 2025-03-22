@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { forwardRef, useState } from 'react';
 import {
   isControlKey,
   isCtrlOrCmdKey,
@@ -7,73 +7,75 @@ import {
   formatRUN
 } from '../../utils';
 
-/**
- * @param {{
- *   value?: string;
- *   onChange?: (value: string) => void;
- * } & HTMLInputElement} props
- * @returns {React.JSX.Element}
- */
-function RUNInput(props) {
-  const { value: externalValue, onChange, ...DOMProps } = props;
-  const [ctrlDown, setCtrlDown] = useState(false);
-  const [localValue, setLocalValue] = useState(externalValue ?? '');
-
+export const RUNInput = forwardRef(
   /**
-   * @param {React.FormEvent<HTMLInputElement>} event
+   * @param {{
+   *   value?: string;
+   *   onChange?: (value: string) => void;
+   * } & Omit<React.InputHTMLAttributes<never>, "onChange" | "value">} props
+   * @param {React.ForwardedRef<HTMLInputElement>} ref
+   * @returns {React.JSX.Element}
    */
-  const handleInput = (event) => {
-    /** @type {HTMLInputElement} */
-    const input = event.target;
+  (props, ref) => {
+    const { value: externalValue, onChange, ...DOMProps } = props;
+    const [ctrlDown, setCtrlDown] = useState(false);
+    const [localValue, setLocalValue] = useState(externalValue ?? '');
 
-    const run = cleanRUN(input.value);
+    /**
+     * @param {React.FormEvent<HTMLInputElement>} event
+     */
+    const handleInput = (event) => {
+      /** @type {HTMLInputElement} */
+      const input = event.target;
 
-    setLocalValue(run);
+      const run = cleanRUN(input.value);
 
-    if (onChange) {
-      onChange(run);
-    }
-  };
+      setLocalValue(run);
 
-  /**
-   * @param {React.KeyboardEvent<HTMLInputElement>} event
-   */
-  const handleKeyDown = (event) => {
-    const keyFilter = /[\dK]/;
+      if (onChange) {
+        onChange(run);
+      }
+    };
 
-    if (isCtrlOrCmdKey(event)) {
-      setCtrlDown(true);
-    }
+    /**
+     * @param {React.KeyboardEvent<HTMLInputElement>} event
+     */
+    const handleKeyDown = (event) => {
+      const keyFilter = /[\dK]/;
 
-    if (!(
-      keyFilter.test(event.key.toUpperCase()) ||
-      isControlKey(event) ||
-      (ctrlDown && isEditKey(event))
-    )) {
-      event.preventDefault();
-    }
-  };
+      if (isCtrlOrCmdKey(event)) {
+        setCtrlDown(true);
+      }
 
-  /**
-   * @param {React.KeyboardEvent<HTMLInputElement>} event
-   */
-  const handleKeyUp = (event) => {
-    if (isCtrlOrCmdKey(event)) {
-      setCtrlDown(false);
-    }
-  };
+      if (!(
+        keyFilter.test(event.key.toUpperCase()) ||
+        isControlKey(event) ||
+        (ctrlDown && isEditKey(event))
+      )) {
+        event.preventDefault();
+      }
+    };
 
-  return (
-    <input
-      {...DOMProps}
-      type="text"
-      maxLength={12}
-      value={formatRUN(localValue)}
-      onInput={handleInput}
-      onKeyDown={handleKeyDown}
-      onKeyUp={handleKeyUp}
-    />
-  );
-}
+    /**
+     * @param {React.KeyboardEvent<HTMLInputElement>} event
+     */
+    const handleKeyUp = (event) => {
+      if (isCtrlOrCmdKey(event)) {
+        setCtrlDown(false);
+      }
+    };
 
-export default RUNInput;
+    return (
+      <input
+        {...DOMProps}
+        ref={ref}
+        type="text"
+        maxLength={12}
+        value={formatRUN(localValue)}
+        onInput={handleInput}
+        onKeyDown={handleKeyDown}
+        onKeyUp={handleKeyUp}
+      />
+    );
+  }
+);
