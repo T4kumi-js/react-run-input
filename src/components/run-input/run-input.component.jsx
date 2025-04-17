@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from 'react';
+import React, { forwardRef, useEffect, useState } from 'react';
 import {
   isControlKey,
   isCtrlOrCmdKey,
@@ -18,7 +18,14 @@ export const RUNInput = forwardRef(
    */
   ({ value: externalValue, onChange, ...DOMProps }, ref) => {
     const [ctrlDown, setCtrlDown] = useState(false);
-    const [localValue, setLocalValue] = useState(externalValue ?? '');
+    const [localValue, setLocalValue] = useState('');
+
+    useEffect(() => {
+      if (externalValue) {
+        const run = cleanRUN(externalValue);
+        setLocalValue(run);
+      }
+    }, [externalValue]);
 
     /**
      * @param {React.ChangeEvent<HTMLInputElement>} event
