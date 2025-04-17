@@ -16,19 +16,15 @@ export const RUNInput = forwardRef(
    * @param {React.ForwardedRef<HTMLInputElement>} ref
    * @returns {React.JSX.Element}
    */
-  (props, ref) => {
-    const { value: externalValue, onChange, ...DOMProps } = props;
+  ({ value: externalValue, onChange, ...DOMProps }, ref) => {
     const [ctrlDown, setCtrlDown] = useState(false);
     const [localValue, setLocalValue] = useState(externalValue ?? '');
 
     /**
-     * @param {React.FormEvent<HTMLInputElement>} event
+     * @param {React.ChangeEvent<HTMLInputElement>} event
      */
     const handleInput = (event) => {
-      /** @type {HTMLInputElement} */
-      const input = event.target;
-
-      const run = cleanRUN(input.value);
+      const run = cleanRUN(event.target.value);
 
       setLocalValue(run);
 
