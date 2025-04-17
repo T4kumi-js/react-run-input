@@ -1,3 +1,4 @@
+import globals from 'globals';
 import pluginJs from '@eslint/js';
 import pluginStylistic from '@stylistic/eslint-plugin';
 import pluginReactHooks from 'eslint-plugin-react-hooks';
@@ -33,7 +34,8 @@ export default [
         ecmaFeatures: {
           jsx: true
         }
-      }
+      },
+      globals: globals.browser
     },
     plugins: {
       '@stylistic': pluginStylistic
