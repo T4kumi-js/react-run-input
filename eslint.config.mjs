@@ -1,11 +1,28 @@
 import pluginJs from '@eslint/js';
 import pluginStylistic from '@stylistic/eslint-plugin';
 import pluginReactHooks from 'eslint-plugin-react-hooks';
+import pluginStorybook from 'eslint-plugin-storybook';
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
   pluginJs.configs.recommended,
   pluginReactHooks.configs['recommended-latest'],
+  {
+    files: [
+      'src/**/*.stories.{js,jsx}'
+    ],
+    languageOptions: {
+      ecmaVersion: 2022,
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true
+        }
+      }
+    },
+    plugins: {
+      'storybook': pluginStorybook
+    }
+  },
   {
     files: [
       'src/**/*.{js,jsx}'

@@ -1,6 +1,7 @@
 # Project-specific
 dist
 coverage
+*storybook.log
 
 # NodeJS directories and files
 node_modules
