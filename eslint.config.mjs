@@ -177,7 +177,6 @@ export default [
   },
   {
     ignores: [
-      '.storybook/',
       'dist/',
       'test/',
       '*.config.js'
