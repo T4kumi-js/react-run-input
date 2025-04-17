@@ -1,10 +1,10 @@
 import React, { forwardRef, useEffect, useState } from 'react';
 import {
+  cleanRUN,
+  formatRUN,
   isControlKey,
   isCtrlOrCmdKey,
-  isEditKey,
-  cleanRUN,
-  formatRUN
+  isEditKey
 } from '../../utils';
 
 export const RUNInput = forwardRef(
