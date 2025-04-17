@@ -30,7 +30,7 @@ export const RUNInput = forwardRef(
     /**
      * @param {React.ChangeEvent<HTMLInputElement>} event
      */
-    const handleInput = (event) => {
+    const handleChange = (event) => {
       const run = cleanRUN(event.target.value);
 
       setLocalValue(run);
@@ -75,7 +75,7 @@ export const RUNInput = forwardRef(
         type="text"
         maxLength={12}
         value={formatRUN(localValue)}
-        onInput={handleInput}
+        onChange={handleChange}
         onKeyDown={handleKeyDown}
         onKeyUp={handleKeyUp}
       />
