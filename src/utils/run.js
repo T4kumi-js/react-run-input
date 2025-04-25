@@ -1,9 +1,12 @@
 /**
+ * @typedef {Object} RUN
+ * @property {string} numRUN The RUN number
+ * @property {string} dv The RUN verification digit
+ */
+
+/**
  * @param {string} run The identifier
- * @returns {{
- *   numRUN: string;
- *   dv: string;
- * }} Returns the identifier with the dots and hyphens removed, with the RUN number and DV separated in an object.
+ * @returns {RUN} Returns the identifier with the dots and hyphens removed, with the RUN number and DV separated in an object.
  */
 export function cleanAndSplitRUN(run) {
   const cleanRUN = run?.replace(/[\.\-]/g, '');
