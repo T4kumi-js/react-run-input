@@ -7,12 +7,14 @@
   "private": false,
   "keywords": [
     "react",
-    "components",
+    "component",
     "ui",
     "input",
     "form",
     "identity",
-    "chile"
+    "chile",
+    "run",
+    "rut"
   ],
   "main": "dist/cjs/react-run-input.js",
   "module": "dist/esm/react-run-input.js",
