@@ -82,3 +82,5 @@ export const RUNInput = forwardRef(
     );
   }
 );
+
+RUNInput.displayName = 'RUNInput';
