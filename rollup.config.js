@@ -1,7 +1,8 @@
+const { defineConfig } = require('rollup');
 const PeerDepsExternalPlugin = require('rollup-plugin-peer-deps-external');
 const { nodeResolve } = require('@rollup/plugin-node-resolve');
 const commonjs = require('@rollup/plugin-commonjs');
-const babel = require('@rollup/plugin-babel');
+const { babel } = require('@rollup/plugin-babel');
 const terser = require('@rollup/plugin-terser');
 
 const nodeResolveConfig = {
@@ -11,15 +12,7 @@ const nodeResolveConfig = {
   ]
 };
 
-const babelConfig = {
-  exclude: 'node_modules/**',
-  presets: [
-    '@babel/preset-react'
-  ],
-  babelHelpers: 'bundled'
-};
-
-module.exports = [
+const rollupConfig = defineConfig([
   {
     input: './src/index.js',
     output: [
@@ -47,7 +40,7 @@ module.exports = [
       PeerDepsExternalPlugin(),
       nodeResolve(nodeResolveConfig),
       commonjs(),
-      babel(babelConfig)
+      babel({ babelHelpers: 'bundled' })
     ]
   },
   {
@@ -77,8 +70,10 @@ module.exports = [
       PeerDepsExternalPlugin(),
       nodeResolve(nodeResolveConfig),
       commonjs(),
-      babel(babelConfig),
+      babel({ babelHelpers: 'bundled' }),
       terser()
     ]
   }
-];
+]);
+
+module.exports = rollupConfig;
