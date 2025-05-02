@@ -15,7 +15,7 @@ module.exports = {
   detectOpenHandles: true,
   testEnvironment: 'jest-environment-jsdom',
   setupFilesAfterEnv: [
-    '<rootDir>/test/setup-tests.js'
+    '<rootDir>/tests/setup-tests.js'
   ],
   verbose: true
 };

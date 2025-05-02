@@ -31,7 +31,7 @@
     "clean": "rimraf ./dist",
     "rollup": "rollup -c",
     "build": "npm-run-all clean rollup",
-    "test": "jest ./test",
+    "test": "jest ./tests",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "storybook": "storybook dev --ci -p 6006",
