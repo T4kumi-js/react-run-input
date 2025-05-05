@@ -1,0 +1,25 @@
+{
+  "name": "React RUN Input",
+  "image": "node:22",
+  "forwardPorts": [
+    6006
+  ],
+  "mounts": [
+    {
+      "source": "react_run_input_node_modules",
+      "target": "${containerWorkspaceFolder}/node_modules",
+      "type": "volume"
+    }
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "orta.vscode-jest"
+      ]
+    }
+  },
+  "runArgs": [
+    "--name=react-run-input-dev-environment"
+  ]
+}
