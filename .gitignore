@@ -2,6 +2,7 @@
 dist
 coverage
 *storybook.log
+storybook-static
 
 # NodeJS directories and files
 node_modules
