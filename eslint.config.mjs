@@ -8,34 +8,19 @@ import pluginStorybook from 'eslint-plugin-storybook';
 export default [
   pluginJs.configs.recommended,
   pluginReactHooks.configs['recommended-latest'],
-  {
-    files: [
-      'src/**/*.stories.{js,jsx}'
-    ],
-    languageOptions: {
-      ecmaVersion: 2022,
-      parserOptions: {
-        ecmaFeatures: {
-          jsx: true
-        }
-      }
-    },
-    plugins: {
-      'storybook': pluginStorybook
-    }
-  },
+  ...pluginStorybook.configs['flat/recommended'],
   {
     files: [
       'src/**/*.{js,jsx}'
     ],
     languageOptions: {
       ecmaVersion: 2022,
+      globals: globals.browser,
       parserOptions: {
         ecmaFeatures: {
           jsx: true
         }
-      },
-      globals: globals.browser
+      }
     },
     plugins: {
       '@stylistic': pluginStylistic
@@ -52,7 +37,7 @@ export default [
       '@stylistic/computed-property-spacing': 'warn',
       '@stylistic/dot-location': ['warn', 'property'],
       '@stylistic/eol-last': 'warn',
-      '@stylistic/func-call-spacing': 'warn',
+      '@stylistic/function-call-spacing': 'warn',
       '@stylistic/generator-star-spacing': 'warn',
       '@stylistic/indent': ['warn', 2, {
         SwitchCase: 1,
@@ -77,8 +62,9 @@ export default [
         ObjectExpression: 1,
         ImportDeclaration: 1,
         flatTernaryExpressions: false,
-        offsetTernaryExpressions: true,
-        offsetTernaryExpressionsOffsetCallExpressions: true,
+        offsetTernaryExpressions: {
+          CallExpression: true
+        },
         ignoreComments: false
       }],
       '@stylistic/jsx-curly-newline': 'warn',
@@ -142,6 +128,10 @@ export default [
       }],
       '@stylistic/no-trailing-spaces': 'warn',
       '@stylistic/no-whitespace-before-property': 'warn',
+      '@stylistic/object-curly-newline': ['warn', {
+        multiline: true,
+        consistent: true
+      }],
       '@stylistic/object-curly-spacing': ['warn', 'always'],
       '@stylistic/padded-blocks': ['warn', 'never'],
       '@stylistic/quote-props': ['warn', 'consistent'],
@@ -151,7 +141,7 @@ export default [
       '@stylistic/semi-spacing': 'warn',
       '@stylistic/space-before-blocks': 'warn',
       '@stylistic/space-before-function-paren': ['warn', {
-        anonymous: 'never',
+        anonymous: 'always',
         named: 'never',
         asyncArrow: 'always'
       }],
@@ -160,6 +150,7 @@ export default [
       '@stylistic/space-unary-ops': 'warn',
       '@stylistic/spaced-comment': 'warn',
       '@stylistic/template-curly-spacing': 'warn',
+      '@stylistic/template-tag-spacing': ['warn', 'never'],
       '@stylistic/wrap-iife': ['error', 'inside'],
       '@stylistic/yield-star-spacing': 'warn',
       'array-callback-return': 'error',
