@@ -1,27 +1,20 @@
+import { defineConfig } from 'eslint/config';
 import globals from 'globals';
 import pluginJs from '@eslint/js';
 import pluginStylistic from '@stylistic/eslint-plugin';
 import pluginReactHooks from 'eslint-plugin-react-hooks';
 import pluginStorybook from 'eslint-plugin-storybook';
 
-/** @type {import('eslint').Linter.Config[]} */
-export default [
+export default defineConfig(
+  // Base JavaScript config for all files
   pluginJs.configs.recommended,
-  pluginReactHooks.configs['recommended-latest'],
+
+  // Storybook-specific rules for story files
   ...pluginStorybook.configs['flat/recommended'],
+
+  // Global stylistic rules for all files
   {
-    files: [
-      'src/**/*.{js,jsx}'
-    ],
-    languageOptions: {
-      ecmaVersion: 2022,
-      globals: globals.browser,
-      parserOptions: {
-        ecmaFeatures: {
-          jsx: true
-        }
-      }
-    },
+    files: ['**/*.{js,jsx,mjs}'],
     plugins: {
       '@stylistic': pluginStylistic
     },
@@ -139,6 +132,7 @@ export default [
       '@stylistic/rest-spread-spacing': 'warn',
       '@stylistic/semi': 'error',
       '@stylistic/semi-spacing': 'warn',
+      '@stylistic/semi-style': ['error', 'last'],
       '@stylistic/space-before-blocks': 'warn',
       '@stylistic/space-before-function-paren': ['warn', {
         anonymous: 'always',
@@ -151,21 +145,53 @@ export default [
       '@stylistic/spaced-comment': 'warn',
       '@stylistic/template-curly-spacing': 'warn',
       '@stylistic/template-tag-spacing': ['warn', 'never'],
+      '@stylistic/type-annotation-spacing': 'warn',
+      '@stylistic/type-generic-spacing': 'warn',
+      '@stylistic/type-named-tuple-spacing': 'warn',
       '@stylistic/wrap-iife': ['error', 'inside'],
-      '@stylistic/yield-star-spacing': 'warn',
+      '@stylistic/yield-star-spacing': 'warn'
+    }
+  },
+
+  // Base project rules for all files
+  {
+    files: ['**/*.{js,jsx,mjs}'],
+    languageOptions: {
+      ecmaVersion: 2022,
+      globals: globals.browser,
+      parserOptions: {
+        ecmaFeatures: { jsx: true }
+      }
+    },
+    rules: {
       'array-callback-return': 'error',
       'no-control-regex': 'off',
       'no-empty': ['warn', {
         allowEmptyCatch: true
       }],
+      'no-extra-boolean-cast': 'off',
       'no-unused-private-class-members': 'warn',
       'no-unused-vars': 'off',
       'no-useless-constructor': 'warn',
       'no-useless-escape': 'warn',
       'no-useless-return': 'warn',
-      'no-var': 'warn'
+      'no-var': 'warn',
+      'prefer-const': 'warn'
     }
   },
+
+  // React-specific rules
+  {
+    files: ['**/*.{js,jsx}'],
+    extends: [
+      pluginReactHooks.configs.flat.recommended
+    ],
+    rules: {
+      'react-hooks/set-state-in-effect': 'off'
+    }
+  },
+
+  // Ignore patterns
   {
     ignores: [
       'dist/',
@@ -173,4 +199,4 @@ export default [
       '*.config.js'
     ]
   }
-];
+);
