@@ -2,12 +2,12 @@ import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import { useEffect, useState } from 'react';
 import { RUNInput } from '../components';
 
-type Args = {
+type RUNInputStoryArgs = {
   value?: string;
   placeholder?: string;
 };
 
-const Template = (args: Args) => {
+const Template = (args: RUNInputStoryArgs) => {
   const [value, setValue] = useState<string>('');
 
   useEffect(() => {
@@ -36,7 +36,7 @@ const meta: Meta<typeof RUNInput> = {
 
 export default meta;
 
-export const Default: StoryObj<Args> = {
+export const Default: StoryObj<typeof meta> = {
   args: {
     value: '',
     placeholder: 'Enter RUN...'
