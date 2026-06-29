@@ -1,19 +1,28 @@
-import React, { useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
+import { useEffect, useState } from 'react';
 import { RUNInput } from '../components';
 
-export default {
-  title: 'RUN Input/Input',
-  component: RUNInput
+type Args = {
+  value?: string;
+  placeholder?: string;
 };
 
-/**
- * @param {{
- *   value: string;
- * }} args
- * @returns {React.JSX.Element}
- */
-const Template = (args) => {
-  const [value, setValue] = useState(args.value ?? '');
+const meta: Meta<typeof RUNInput> = {
+  title: 'RUN Input/Input',
+  component: RUNInput,
+  tags: ['autodocs'],
+  argTypes: {
+    value: { control: 'text' },
+    placeholder: { control: 'text' }
+  }
+};
+
+const Template = (args: Args) => {
+  const [value, setValue] = useState<string>('');
+
+  useEffect(() => {
+    setValue(args.value ?? '');
+  }, [args.value]);
 
   return (
     <RUNInput
@@ -24,7 +33,12 @@ const Template = (args) => {
   );
 };
 
-export const Primary = Template.bind({});
-Primary.args = {
-  placeholder: 'Ingrese su RUN'
+export default meta;
+
+export const Default: StoryObj<Args> = {
+  render: Template,
+  args: {
+    value: '',
+    placeholder: 'Enter RUN...'
+  }
 };

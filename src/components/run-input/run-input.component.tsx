@@ -1,4 +1,9 @@
-import React, { forwardRef, useEffect, useState } from 'react';
+import type React from 'react';
+import {
+  forwardRef,
+  useEffect,
+  useState
+} from 'react';
 import {
   cleanRUN,
   formatRUN,
@@ -7,15 +12,12 @@ import {
   isEditKey
 } from '../../utils';
 
-export const RUNInput = forwardRef(
-  /**
-   * @param {{
-   *   value?: string;
-   *   onChange?: (value: string) => void;
-   * } & Omit<React.InputHTMLAttributes<never>, "onChange" | "value">} props
-   * @param {React.ForwardedRef<HTMLInputElement>} ref
-   * @returns {React.JSX.Element}
-   */
+type RUNInputProps = {
+  value?: string;
+  onChange?: (value: string) => void;
+} & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value'>;
+
+export const RUNInput = forwardRef<HTMLInputElement, RUNInputProps>(
   ({ value: externalValue, onChange, ...DOMProps }, ref) => {
     const [ctrlDown, setCtrlDown] = useState(false);
     const [localValue, setLocalValue] = useState('');
@@ -27,10 +29,7 @@ export const RUNInput = forwardRef(
       }
     }, [externalValue]);
 
-    /**
-     * @param {React.ChangeEvent<HTMLInputElement>} event
-     */
-    const handleChange = (event) => {
+    const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
       const run = cleanRUN(event.target.value);
 
       setLocalValue(run);
@@ -40,10 +39,7 @@ export const RUNInput = forwardRef(
       }
     };
 
-    /**
-     * @param {React.KeyboardEvent<HTMLInputElement>} event
-     */
-    const handleKeyDown = (event) => {
+    const handleKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (event) => {
       const keyFilter = /[\dK]/;
 
       if (isCtrlOrCmdKey(event)) {
@@ -59,10 +55,7 @@ export const RUNInput = forwardRef(
       }
     };
 
-    /**
-     * @param {React.KeyboardEvent<HTMLInputElement>} event
-     */
-    const handleKeyUp = (event) => {
+    const handleKeyUp: React.KeyboardEventHandler<HTMLInputElement> = (event) => {
       if (isCtrlOrCmdKey(event)) {
         setCtrlDown(false);
       }

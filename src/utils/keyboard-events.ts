@@ -1,10 +1,10 @@
-import React from 'react';
+import type React from 'react';
 
 /**
- * @param {React.KeyboardEvent<HTMLInputElement>} event The triggered keyboard event object
- * @returns {boolean} Returns true if it's pressing a control key.
+ * @param event The triggered keyboard event object
+ * @returns Returns true if it's pressing a control key.
  */
-export function isControlKey(event) {
+export function isControlKey(event: React.KeyboardEvent<HTMLInputElement>): boolean {
   const KEYS = [
     8,  // Backspace
     9,  // Tab
@@ -23,10 +23,10 @@ export function isControlKey(event) {
 }
 
 /**
- * @param {React.KeyboardEvent<HTMLInputElement>} event The triggered keyboard event object
- * @returns {boolean} Returns true if it's pressing the CTRL or COMMAND key.
+ * @param event The triggered keyboard event object
+ * @returns Returns true if it's pressing the CTRL or COMMAND key.
  */
-export function isCtrlOrCmdKey(event) {
+export function isCtrlOrCmdKey(event: React.KeyboardEvent<HTMLInputElement>): boolean {
   const KEYS = [
     17, // Control
     91  // Command (for macOS)
@@ -36,10 +36,10 @@ export function isCtrlOrCmdKey(event) {
 }
 
 /**
- * @param {React.KeyboardEvent<HTMLInputElement>} event The triggered keyboard event object
- * @returns {boolean} Returns true if it's pressing the C, V, or X key (for copy, paste, and cut respectively).
+ * @param event The triggered keyboard event object
+ * @returns Returns true if it's pressing the C, V, or X key (for copy, paste, and cut respectively).
  */
-export function isEditKey(event) {
+export function isEditKey(event: React.KeyboardEvent<HTMLInputElement>): boolean {
   const KEYS = [
     67, // C
     86, // V

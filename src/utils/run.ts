@@ -1,17 +1,23 @@
-/**
- * @typedef {Object} RUN
- * @property {string} numRUN The RUN number
- * @property {string} dv The RUN verification digit
- */
+type RUN = {
+  /**
+   * The RUN number
+   */
+  numRUN: string;
+
+  /**
+   * The RUN verification digit
+   */
+  dv: string;
+};
 
 /**
- * @param {string} run The identifier
- * @returns {RUN} Returns the identifier with the dots and hyphens removed, with the RUN number and DV separated in an object.
+ * @param run The identifier
+ * @returns Returns the identifier with the dots and hyphens removed, with the RUN number and DV separated in an object.
  */
-export function cleanAndSplitRUN(run) {
+export function cleanAndSplitRUN(run: string): RUN {
   const cleanRUN = run?.replace(/[\.\-]/g, '');
-  let numRUN = '',
-      dv = '';
+  let numRUN: string = '';
+  let dv: string = '';
 
   if (cleanRUN?.length === 1) {
     numRUN = cleanRUN;
@@ -24,27 +30,27 @@ export function cleanAndSplitRUN(run) {
 }
 
 /**
- * @param {string} run The identifier
- * @returns {string} Returns the identifier with the dots and hyphens removed.
+ * @param run The identifier
+ * @returns Returns the identifier with the dots and hyphens removed.
  */
-export function cleanRUN(run) {
+export function cleanRUN(run: string): string {
   const { numRUN, dv } = cleanAndSplitRUN(run);
   return numRUN + dv;
 }
 
 /**
- * @param {string} run The identifier
- * @returns {boolean} Returns if the identifier is valid by checking it's DV.
+ * @param run The identifier
+ * @returns Returns if the identifier is valid by checking it's DV.
  */
-export function checkRUN(run) {
+export function checkRUN(run: string): boolean {
   const isNumber = /^\d+$/;
   const { numRUN, dv } = cleanAndSplitRUN(run);
 
   if (!(numRUN && dv && isNumber.test(numRUN))) return false;
 
-  let calculation = 0,
-      series = 2,
-      validDV = '';
+  let calculation: number = 0;
+  let series: number = 2;
+  let validDV: string;
 
   for (let i = numRUN.length - 1; i >= 0; i--) {
     if (series > 7) series = 2;
@@ -66,19 +72,20 @@ export function checkRUN(run) {
 }
 
 /**
- * @param {string} run The identifier
- * @returns {string} Returns the identifier formatted with dots and the hyphen.
+ * @param run The identifier
+ * @returns Returns the identifier formatted with dots and the hyphen.
  */
-export function formatRUN(run) {
-  let { numRUN, dv } = cleanAndSplitRUN(run);
+export function formatRUN(run: string): string {
+  const { numRUN, dv } = cleanAndSplitRUN(run);
+  let numRUNCopy = numRUN;
   let formattedRUN = '';
 
-  while (numRUN.length > 3) {
-    formattedRUN = '.' + numRUN.slice(numRUN.length - 3) + formattedRUN;
-    numRUN = numRUN.slice(0, numRUN.length - 3);
+  while (numRUNCopy.length > 3) {
+    formattedRUN = '.' + numRUNCopy.slice(numRUNCopy.length - 3) + formattedRUN;
+    numRUNCopy = numRUNCopy.slice(0, numRUNCopy.length - 3);
   }
 
-  formattedRUN = numRUN + formattedRUN;
+  formattedRUN = numRUNCopy + formattedRUN;
 
   return (dv) ? `${formattedRUN}-${dv}` : formattedRUN;
 }
