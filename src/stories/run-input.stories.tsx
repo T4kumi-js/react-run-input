@@ -7,16 +7,6 @@ type Args = {
   placeholder?: string;
 };
 
-const meta: Meta<typeof RUNInput> = {
-  title: 'RUN Input/Input',
-  component: RUNInput,
-  tags: ['autodocs'],
-  argTypes: {
-    value: { control: 'text' },
-    placeholder: { control: 'text' }
-  }
-};
-
 const Template = (args: Args) => {
   const [value, setValue] = useState<string>('');
 
@@ -33,10 +23,20 @@ const Template = (args: Args) => {
   );
 };
 
+const meta: Meta<typeof RUNInput> = {
+  title: 'RUN Input/Input',
+  component: RUNInput,
+  render: Template,
+  tags: ['autodocs'],
+  argTypes: {
+    value: { control: 'text' },
+    placeholder: { control: 'text' }
+  }
+};
+
 export default meta;
 
 export const Default: StoryObj<Args> = {
-  render: Template,
   args: {
     value: '',
     placeholder: 'Enter RUN...'
