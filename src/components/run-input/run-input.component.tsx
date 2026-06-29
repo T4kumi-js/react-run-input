@@ -19,8 +19,8 @@ type RUNInputProps = {
 
 export const RUNInput = forwardRef<HTMLInputElement, RUNInputProps>(
   ({ value: externalValue, onChange, ...DOMProps }, ref) => {
-    const [ctrlDown, setCtrlDown] = useState(false);
-    const [localValue, setLocalValue] = useState('');
+    const [ctrlDown, setCtrlDown] = useState<boolean>(false);
+    const [localValue, setLocalValue] = useState<string>('');
 
     useEffect(() => {
       if (externalValue) {
