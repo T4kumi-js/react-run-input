@@ -1,5 +1,4 @@
 const { defineConfig } = require('rollup');
-const PeerDepsExternalPlugin = require('rollup-plugin-peer-deps-external');
 const { nodeResolve } = require('@rollup/plugin-node-resolve');
 const commonjs = require('@rollup/plugin-commonjs');
 const { babel } = require('@rollup/plugin-babel');
@@ -34,8 +33,8 @@ const rollupConfig = defineConfig([
         sourcemap: true
       }
     ],
+    external: ['react'],
     plugins: [
-      PeerDepsExternalPlugin(),
       nodeResolve({ extensions }),
       commonjs(),
       babel({ extensions, babelHelpers: 'bundled' })
@@ -64,8 +63,8 @@ const rollupConfig = defineConfig([
         sourcemap: true
       }
     ],
+    external: ['react'],
     plugins: [
-      PeerDepsExternalPlugin(),
       nodeResolve({ extensions }),
       commonjs(),
       babel({ extensions, babelHelpers: 'bundled' }),
