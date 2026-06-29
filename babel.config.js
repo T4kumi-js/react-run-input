@@ -4,7 +4,8 @@ const configBabel = (api) => {
   const config = {
     exclude: 'node_modules/**',
     presets: [
-      ['@babel/preset-react']
+      '@babel/preset-react',
+      '@babel/preset-typescript'
     ]
   };
 

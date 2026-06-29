@@ -5,16 +5,14 @@ const commonjs = require('@rollup/plugin-commonjs');
 const { babel } = require('@rollup/plugin-babel');
 const terser = require('@rollup/plugin-terser');
 
-const nodeResolveConfig = {
-  extensions: [
-    '.js',
-    '.jsx'
-  ]
-};
+const extensions = [
+  '.ts',
+  '.tsx'
+];
 
 const rollupConfig = defineConfig([
   {
-    input: './src/index.js',
+    input: './src/index.ts',
     output: [
       {
         file: 'dist/cjs/react-run-input.js',
@@ -38,13 +36,13 @@ const rollupConfig = defineConfig([
     ],
     plugins: [
       PeerDepsExternalPlugin(),
-      nodeResolve(nodeResolveConfig),
+      nodeResolve({ extensions }),
       commonjs(),
-      babel({ babelHelpers: 'bundled' })
+      babel({ extensions, babelHelpers: 'bundled' })
     ]
   },
   {
-    input: './src/index.js',
+    input: './src/index.ts',
     output: [
       {
         file: 'dist/cjs/react-run-input.min.js',
@@ -68,9 +66,9 @@ const rollupConfig = defineConfig([
     ],
     plugins: [
       PeerDepsExternalPlugin(),
-      nodeResolve(nodeResolveConfig),
+      nodeResolve({ extensions }),
       commonjs(),
-      babel({ babelHelpers: 'bundled' }),
+      babel({ extensions, babelHelpers: 'bundled' }),
       terser()
     ]
   }

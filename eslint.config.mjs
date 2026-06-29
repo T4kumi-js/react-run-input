@@ -1,6 +1,7 @@
 import { defineConfig } from 'eslint/config';
 import globals from 'globals';
 import pluginJs from '@eslint/js';
+import pluginTs from 'typescript-eslint';
 import pluginStylistic from '@stylistic/eslint-plugin';
 import pluginReactHooks from 'eslint-plugin-react-hooks';
 import pluginStorybook from 'eslint-plugin-storybook';
@@ -14,7 +15,7 @@ export default defineConfig(
 
   // Global stylistic rules for all files
   {
-    files: ['**/*.{js,jsx,mjs}'],
+    files: ['**/*.{js,cjs,mjs,ts,tsx}'],
     plugins: {
       '@stylistic': pluginStylistic
     },
@@ -155,7 +156,7 @@ export default defineConfig(
 
   // Base project rules for all files
   {
-    files: ['**/*.{js,jsx,mjs}'],
+    files: ['**/*.{js,cjs,mjs,ts,tsx}'],
     languageOptions: {
       ecmaVersion: 2022,
       globals: globals.browser,
@@ -180,9 +181,50 @@ export default defineConfig(
     }
   },
 
+  // JavaScript-specific rules
+  {
+    files: ['**/*.{js,cjs,mjs}'],
+    rules: {
+      'no-unused-vars': 'off',
+      'no-useless-constructor': 'warn'
+    }
+  },
+
+  // TypeScript-specific rules
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [pluginTs.configs.recommended],
+    languageOptions: {
+      parserOptions: {
+        ecmaVersion: 'latest',
+        ecmaFeatures: { jsx: true },
+        sourceType: 'module'
+      }
+    },
+    rules: {
+      '@typescript-eslint/adjacent-overload-signatures': 'warn',
+      '@typescript-eslint/consistent-type-imports': 'warn',
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-unsafe-function-type': 'off',
+      '@typescript-eslint/no-unused-expressions': 'off',
+      '@typescript-eslint/no-unused-vars': 'warn',
+      '@typescript-eslint/no-useless-constructor': 'warn'
+    }
+  },
+
+  // CommonJS environment configuration
+  {
+    files: ['**/*.{js,cjs}'],
+    languageOptions: {
+      globals: globals.node,
+      sourceType: 'commonjs'
+    },
+    rules: {}
+  },
+
   // React-specific rules
   {
-    files: ['**/*.{js,jsx}'],
+    files: ['**/*.tsx'],
     extends: [
       pluginReactHooks.configs.flat.recommended
     ],
@@ -195,8 +237,7 @@ export default defineConfig(
   {
     ignores: [
       'dist/',
-      'test/',
-      '*.config.js'
+      'test/'
     ]
   }
 );
